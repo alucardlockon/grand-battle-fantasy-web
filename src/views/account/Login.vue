@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'home',
-  data() {
+  data () {
     return {
       account: {
         username: '',
@@ -22,9 +22,13 @@ export default {
     }
   },
   methods: {
-    login: function() {
-      this.$request.request({url:'http://127.0.0.1:8088/account/read/1'}).then(res => {
-        console.log(res)
+    login: function () {
+      this.$request.post('/account/login', this.account).then(res => {
+        if (res.data.data) {
+          this.$msgbox('提示', '登录成功')
+        } else {
+          this.$msgbox('提示', '登录失败')
+        }
       })
     }
   }
