@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import qs from 'qs'
 export default {
   name: 'home',
   data () {
@@ -22,14 +23,20 @@ export default {
     }
   },
   methods: {
-    login: function () {
-      this.$request.post('/account/login', this.account).then(res => {
-        if (res.data.data) {
-          this.$msgbox('提示', '登录成功')
-        } else {
-          this.$msgbox('提示', '登录失败')
+    login: async function () {
+      const res = await this.$request.post('/login', qs.stringify(this.account), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': ''
         }
       })
+      if (res.data && res.data.success) {
+        localStorage.setItem('jwt', res.data.token)
+        // this.$msgbox('提示', '登录成功')
+        this.$router.push('/')
+      } else {
+        this.$msgbox('提示', '登录失败')
+      }
     }
   }
 }
