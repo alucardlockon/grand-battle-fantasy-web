@@ -10,7 +10,7 @@ export default {
   name: 'mission',
   methods: {
     handleMissionClick: function () {
-
+      this.$router.push('/battle/battle')
     }
   }
 }

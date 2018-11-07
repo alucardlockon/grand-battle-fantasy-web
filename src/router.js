@@ -22,6 +22,11 @@ export default new Router({
       path: '/account/register',
       name: 'register',
       component: () => import('@/views/account/Register.vue')
+    },
+    {
+      path: '/battle/battle',
+      name: 'battle',
+      component: () => import('@/views/battle/core/battle.vue')
     }
   ]
 })
