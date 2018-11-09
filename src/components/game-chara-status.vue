@@ -1,7 +1,7 @@
 <template>
-    <div style="width: 50%;float: left">
+    <div style="width: 50%;float: left" @click="$emit('click',chara)">
         <div>
-            level: {{chara.level}}
+            <span v-if="chara.selected === true">o</span> level: {{chara.level}}
         </div>
         <div>
             hp: {{chara.hp}} / {{chara.maxHp}}
